@@ -1,22 +1,17 @@
-#include <stdbool.h>
 #include <stdio.h>
-
-struct REPL {                                                 // Struct para variables globales
-    char buffer[1024];                                        // Buffer que guarda las cadenas de string
-};
+#include "models/structs.h"
 
 int main(void) {
-    struct REPL repl;                                         // Crear el objeto del struct REPL
-    char *fgets_status;                                       // Corroborar el estado de fgets
+    struct REPL repl;                                         // Instantiate the REPL struct
+    char *fgets_status;                                       // Check fgets's state
 
-    while (true) {                                            // REPL, la unica forma de matar al shell es con CTRL + C
-        do {
-            fputs("-> ", stdout);                           // Prompt para el usuario
-            fgets_status = fgets(repl.buffer, sizeof(repl.buffer), stdin);
-        } while (fgets_status != NULL);
+    do {                                                      // REPL runs in-definitively under ideal circumstances
+        fputs("-> ", stdout);                               // Prompt for the user
+        fgets_status = fgets(repl.buffer, sizeof(repl.buffer), stdin);
+        fflush(stdout);
+    } while (fgets_status != NULL);
 
-        break;
-    }
+    fputs("\n[ERROR] fgets returned NULL", stderr);         // Debug message
 
-    return -1;
+    return 0;
 }
