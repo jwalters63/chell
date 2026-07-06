@@ -5,4 +5,5 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(cshell
         main.c
-        models/structs.h)
+        modules/REPL.c
+        modules/REPL.h)
