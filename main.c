@@ -2,7 +2,7 @@
 
 int main(void) {
 
-    ReadEvalPrintLoop();
+    readEvalPrintLoop();
 
     return 0;
 }

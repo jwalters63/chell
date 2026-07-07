@@ -1,3 +1,3 @@
 #pragma once
 
-int ReadEvalPrintLoop(void);
+int readEvalPrintLoop(void);

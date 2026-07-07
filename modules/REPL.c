@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "REPL.h"
+#include "parser.h"
 
 /*
  *  @brief Starts the read/write loop of the shell.
@@ -10,7 +11,7 @@
  *  @return 1 if there was an error during the read.
  */
 
-int ReadEvalPrintLoop (void) {
+int readEvalPrintLoop (void) {
     char *fgets_status;
     char buffer[1024];
 
@@ -26,7 +27,7 @@ int ReadEvalPrintLoop (void) {
         fgets_status = fgets(buffer, sizeof(buffer), stdin);   // if fgets returns NULL, then break the loop
 
         if (fgets_status != NULL) {
-            // TODO: invocar al tokenizer
+            tokenizer(buffer);
         }
 
     } while (fgets_status != NULL);
