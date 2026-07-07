@@ -40,4 +40,4 @@ I'm kidding, I'm not going to replace BASH, or ZSH, or FISH *(or maybe I will?, 
 
 Es mi excusa para poder tocar C en estas vacaciones. Los shells son el intérprete entre nosotros, los humanos (y a este punto, los LLM y agentes de código), y el sistema operativo en sí. ¿Qué tal sería un mundo donde habría que invocar a la función `fork()` solo para abrir Micro? Suena inconveniente, ¿verdad?
 
-Es mentira, no voy a reemplazar a BASH, o ZSH, o FISH *(¿o tal vez sí?, uno nunca sabe)*, pero definitivamente este proyecto es para comenzar a experimentar de manera más íntima con el sistema operativo, especialmente Linux, que al día de hoy es mi *daily driver*.
+Es mentira, no voy a reemplazar a BASH, o ZSH, o FISH *(¿o tal vez sí?, uno nunca sabe)*, pero definitivamente este proyecto es para comenzar a experimentar de manera más íntima con el sistema operativo, especialmente Linux, que al día de hoy es mi *daily driver*. 
