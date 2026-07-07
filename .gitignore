@@ -1,1 +1,14 @@
+# Build directories
 builds/
+cmake-build-*/
+
+# IDE
+.idea/
+
+# Compiled objects
+*.o
+*.obj
+*.out
+
+# Testing
+tests/

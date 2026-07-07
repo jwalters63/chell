@@ -1,4 +1,32 @@
-# CHELL
+<div align="right">
+  <a href="#english">English</a> · <a href="#español">Español</a>
+</div>
+
+<br>
+
+<h1 id="english">CHELL</h1>
+
+**CHELL**, female name (refer to *Portal*), also:
+* **C** is **HELL**, because finding a C job is tough.
+* A misspelled version of **SHELL**.
+
+*Count your days BASH (Bourne Again SHell for those who don't know).*
+
+> P.S: Why do programmers love acronyms so much?
+
+## What is CHELL?
+
+It's my excuse to write some C during these holidays. Shells are the interpreters between us humans (and at this point, LLMs and coding agents) and the operating system itself. What would a world look like where you had to call the `fork()` function just to open Micro? Sounds inconvenient, right?
+
+I'm kidding, I'm not going to replace BASH, or ZSH, or FISH *(or maybe I will?, you never know)*, but this project is definitely meant to start experimenting more intimately with the operating system, especially Linux, which is currently my *daily driver*.
+
+<br>
+
+---
+
+<br>
+
+<h1 id="español">CHELL</h1>
 
 **CHELL**, nombre femenino (refiérase a *Portal*), también:
 * **C** is **HELL**, porque cuesta encontrar trabajo de C.
