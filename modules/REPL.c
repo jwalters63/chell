@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "REPL.h"
 #include "parser.h"
+#include "../utils/sanitizer.h"
 
 /*
  *  @brief Starts the read/write loop of the shell.
@@ -27,7 +28,10 @@ int readEvalPrintLoop (void) {
         fgets_status = fgets(buffer, sizeof(buffer), stdin);   // if fgets returns NULL, then break the loop
 
         if (fgets_status != NULL) {
+            sanitizeString(buffer);
             tokenizer(buffer);
+            // TODO: capture the return value of tokenizer() once it returns an args struct,
+            //       then forward it to the executor module (fork + execvp).
         }
 
     } while (fgets_status != NULL);

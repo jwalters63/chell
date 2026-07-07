@@ -9,3 +9,6 @@ cmake-build-*/
 *.o
 *.obj
 *.out
+
+# Testing
+tests/

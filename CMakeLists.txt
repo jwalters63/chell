@@ -9,5 +9,6 @@ add_executable(cshell
         modules/REPL.h
         modules/parser.h
         modules/parser.c
-        models/structs.cpp
+        utils/sanitizer.c
+        utils/sanitizer.h
         models/structs.h)

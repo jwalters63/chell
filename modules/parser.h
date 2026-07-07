@@ -1,10 +1,13 @@
+/*
+ *  modules/parser.h
+ *
+ *  Public interface for the tokenizer/parser module.
+ *  Exposes the FSM-based tokenizer that splits a raw input string
+ *  into discrete tokens stored in an args struct.
+ */
+
 #pragma once
 
-typedef enum {
-    ST_SPACE,
-    ST_QUOTE
-} TOK_STATE;
+int chkQuote(char checking);
 
-int chkQuote(char);
-
-int tokenizer(char *string);
+void tokenizer(char *string);
