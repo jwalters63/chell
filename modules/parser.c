@@ -43,43 +43,68 @@ int chkQuote(char checking) {
  *  inside an args struct.
  *
  *  @param string Pointer to the mutable char array to tokenize.
- *
- *  TODO: change return type from void to args so the REPL can forward
- *        the parsed tokens to the executor.
  */
 
-void tokenizer(char *string) {
+args tokenizer(char *string) {
     bool isQuote = false;
     size_t str_len = strlen(string);
 
     args cmd;
     cmd.argc = 0;
 
-    // TODO BUG-004: if string is empty, this creates a ghost token pointing to '\0'.
-    //                add an early return when buffer is empty or whitespace-only.
-    // TODO BUG-003: if string starts with a space, tokens[0] points to a space that
-    //                gets replaced by '\0', resulting in an empty token.
-    //                skip leading spaces before assigning tokens[0].
-    cmd.tokens[0] = &string[0];                                  // the first word always starts at position 0
+    int start = 0;
+
+    // 1. Skip leading whitespaces
+    while (string[start] == ' ') {
+        start++;
+    }
+
+    // 2. If we hit the end, the input was empty or whitespace-only
+    if (string[start] == '\0') {
+        cmd.status = 1;
+        return cmd;
+    }
+
+    // The first token always starts at the first non-whitespace character
+    cmd.tokens[0] = &string[start];
     cmd.argc++;
 
-    for (int i = 0; i < str_len; i++) {
+    // Process from 'start' onwards, ignoring leading spaces
+    for (int i = start; i < str_len; i++) {
+        
+        // --- QUOTE HANDLING ---
         if (chkQuote(string[i])) {
-            isQuote = !isQuote;                                  // toggle: ST_SPACE <-> ST_QUOTE
-            // TODO BUG-001: the quote character itself remains in the token output.
-            //                replace it with '\0' (or shift pointers) so quotes
-            //                don't appear in the final argument.
+            if (isQuote == false) {
+                // Opening quote: adjust the current token pointer to skip the quote character
+                isQuote = true;
+                cmd.tokens[cmd.argc - 1] = &string[i + 1];
+            } else {
+                // Closing quote: inject null terminator to cleanly end the token
+                isQuote = false;
+                string[i] = '\0';
+            }
         }
 
+        // --- SPACE HANDLING ---
         if (isQuote == false && string[i] == ' ') {
             string[i] = '\0';                                    // inject null terminator to split the word
-            // TODO BUG-002: consecutive spaces (e.g. "ls  -l") cause an empty ghost
-            //                token because string[i+1] is another space. Check that
-            //                the next char is not a space before saving the pointer.
+
+            while (string[i + 1] == ' ') {                       // skip consecutive spaces
+                string[i + 1] = '\0';
+                i++;
+            }
+
             if (i < str_len - 1) {
                 cmd.tokens[cmd.argc] = &string[i + 1];           // save pointer to the start of the next token
                 cmd.argc++;
             }
         }
     }
+
+    // TODO: The tokenizer successfully builds the 'cmd' struct.
+    //       Next step is to pass this struct to a new 'executor' module 
+    //       that will handle built-ins (exit, cd) or fork/execvp.
+
+    cmd.status = 0;
+    return cmd;
 }

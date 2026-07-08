@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "../models/structs.h"
+
 int chkQuote(char checking);
 
-void tokenizer(char *string);
+args tokenizer(char *string);
