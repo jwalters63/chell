@@ -1,5 +1,5 @@
 /*
- *  modules/parser.c
+ *  utils/tokenizer.c
  *
  *  Custom FSM (Finite State Machine) tokenizer for the Chell shell.
  *  Splits a raw input string into tokens by mutating the buffer in-place,
@@ -8,7 +8,7 @@
  *  spaces within arguments.
  */
 
-#include "parser.h"
+#include "tokenizer.h"
 #include "../models/structs.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -101,9 +101,7 @@ args tokenizer(char *string) {
         }
     }
 
-    // TODO: The tokenizer successfully builds the 'cmd' struct.
-    //       Next step is to pass this struct to a new 'executor' module 
-    //       that will handle built-ins (exit, cd) or fork/execvp.
+    // TODO: pasar los punteros al parser
 
     cmd.status = 0;
     return cmd;

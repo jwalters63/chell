@@ -7,8 +7,8 @@ add_executable(cshell
         main.c
         modules/REPL.c
         modules/REPL.h
-        modules/parser.h
-        modules/parser.c
+        utils/tokenizer.h
+        utils/tokenizer.c
         utils/sanitizer.c
         utils/sanitizer.h
         models/structs.h)

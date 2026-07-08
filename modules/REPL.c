@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "REPL.h"
-#include "parser.h"
+#include "../models/structs.h"
 #include "../utils/sanitizer.h"
+#include "../utils/tokenizer.h"
 
 /*
  *  @brief Starts the read/write loop of the shell.
