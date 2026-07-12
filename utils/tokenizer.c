@@ -61,7 +61,7 @@ args tokenizer(char *string) {
 
     // 2. If we hit the end, the input was empty or whitespace-only
     if (string[start] == '\0') {
-        cmd.status = 1;
+        cmd.status = ERR_IS_EMPTY;
         return cmd;
     }
 
@@ -101,7 +101,10 @@ args tokenizer(char *string) {
         }
     }
 
-    // TODO: pasar los punteros al parser
+    if (isQuote == true) {
+        cmd.status = ERR_UNCLOSED_QUOTES;
+        return cmd;
+    }
 
     cmd.status = 0;
     return cmd;

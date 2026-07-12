@@ -3,6 +3,7 @@
 #include "../models/structs.h"
 #include "../utils/sanitizer.h"
 #include "../utils/tokenizer.h"
+#include "../utils/errors.h"
 
 /*
  *  @brief Starts the read/write loop of the shell.
@@ -30,19 +31,22 @@ int readEvalPrintLoop (void) {
 
         if (fgets_status != NULL) {
             sanitizeString(buffer);
-            tokenizer(buffer);
+            args cmd = tokenizer(buffer);
+            if (cmd.status != OK) {
+                printErrorMsg(cmd.status);
+                continue;
+            }
+
             // TODO: capture the return value of tokenizer() once it returns an args struct,
             //       then forward it to the executor module (fork + execvp).
         }
 
     } while (fgets_status != NULL);
 
-    if (ferror(stdin) != 0) {                                    // check if it returned NULL bc of an error or just an EOF
-        fputs("\n[ERROR] fgets returned NULL\n", stderr);
-        return 1;
+    if (ferror(stdin) != 0) {
+        printErrorMsg(ERR_FGETS_FAIL);
+        return ERR_FGETS_FAIL;
     }
-
-    fputs("\n[MSG] session successfully finished!\n", stdout); // if it returns 0, then it just was an EOF
 
     return 0;
 }

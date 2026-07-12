@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../models/structs.h"
+#include "errors.h"
 
 int chkQuote(char checking);
 

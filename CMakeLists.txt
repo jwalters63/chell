@@ -11,4 +11,10 @@ add_executable(cshell
         utils/tokenizer.c
         utils/sanitizer.c
         utils/sanitizer.h
-        models/structs.h)
+        models/structs.h
+        utils/errors.c
+        utils/errors.h
+        modules/executor.c
+        modules/executor.h
+        builtins/core.c
+        builtins/core.h)
