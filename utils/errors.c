@@ -6,7 +6,7 @@ void printErrorMsg(shellStatus status) {
         case OK:
             break;
 
-        case ERR_IS_EMPTY:
+        case WARN_IS_EMPTY:
             break;
 
         case ERR_FGETS_FAIL:

@@ -37,8 +37,8 @@ int readEvalPrintLoop (void) {
                 continue;
             }
 
-            // TODO: capture the return value of tokenizer() once it returns an args struct,
-            //       then forward it to the executor module (fork + execvp).
+            
+            // TODO: pasar los punteros al executor
         }
 
     } while (fgets_status != NULL);

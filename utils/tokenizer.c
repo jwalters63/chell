@@ -61,7 +61,7 @@ args tokenizer(char *string) {
 
     // 2. If we hit the end, the input was empty or whitespace-only
     if (string[start] == '\0') {
-        cmd.status = ERR_IS_EMPTY;
+        cmd.status = WARN_IS_EMPTY;
         return cmd;
     }
 
@@ -105,6 +105,8 @@ args tokenizer(char *string) {
         cmd.status = ERR_UNCLOSED_QUOTES;
         return cmd;
     }
+
+    cmd.tokens[cmd.argc] = NULL;                                 // last argument has to be a NULL to indicate the end of the command
 
     cmd.status = 0;
     return cmd;
